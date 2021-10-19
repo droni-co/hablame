@@ -1,0 +1,12 @@
+{
+    "name": "gustavo/hablame",
+    "authors": [
+        {
+            "name": "Gustavo Barragan",
+            "email": "dev@droni.co"
+        }
+    ],
+    "require": {
+        "fpdf/fpdf": "^1.83"
+    }
+}
