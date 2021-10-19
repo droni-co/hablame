@@ -29,10 +29,24 @@
 	
 // LA COLUMNA 2 NO TIENE NINGUNA FUNCION EN ESTE EJERCICIO
 
-
-
-
-
-
+$fila = 1;
+$numByDate = [];
+$numByPrefix = [];
+if (($gestor = fopen("./assets/portability.csv", "r")) !== FALSE) {
+    while (($datos = fgetcsv($gestor, 1000, ";")) !== FALSE) {
+      // group by date
+      $date = $datos[2];
+      if(!isset($numByDate[$date])) { $numByDate[$date] = []; }
+      array_push($numByDate[$date], $datos[0]);
+      // group by prefix
+      $prefix = substr($datos[0], 0, 5);
+      if(!isset($numByPrefix[$prefix])) { $numByPrefix[$prefix] = []; } 
+      array_push($numByPrefix[$prefix], $datos[0]);
+      $fila++;
+    }
+    fclose($gestor);
+}
+print_r($numByDate);
+print_r($numByPrefix);
 
 ?>
