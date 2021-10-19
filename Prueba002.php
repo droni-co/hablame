@@ -6,7 +6,17 @@
 // USANDO CURL, INVOQUE DICHA URL CON UNA IP CUALQUIERA
 // EL JSON OBTENIDO, IMPRIMALO COMO ARRAY
 
-
-
+function getIpInfo($ip) {
+  $loc = "http://ip-api.com/json/";  
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $loc);  
+  curl_setopt($ch, CURLOPT_HEADER, 0);  
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $res = curl_exec($ch);
+  curl_close($ch);
+  return json_decode($res, true);
+}
+$info = getIpInfo($_SERVER['REMOTE_ADDR']);
+print_r($info);
 
 ?>

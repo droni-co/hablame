@@ -56,8 +56,11 @@ function indicativo($num=null) {
   $indicativos_telefonicos[8]["destino"]="USA";
   $indicativos_telefonicos[9]["ind"]=58;
   $indicativos_telefonicos[9]["destino"]="Venezuela";
+
+  $logs = fopen("Prueba001.logs.txt", "a+") or die("Unable to open file!");
   foreach($indicativos_telefonicos as $key => $indicativo) {
     if(substr($num, 0, strlen($indicativo['ind'])) == $indicativo['ind']) {
+      fwrite($logs, json_encode([$indicativos_telefonicos[$key], $num]). PHP_EOL);
       return $indicativos_telefonicos[$key];
     }
   }
